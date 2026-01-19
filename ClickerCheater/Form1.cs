@@ -116,6 +116,7 @@ namespace ClickerCheater
 
             while (isRunning)
             {
+                // 1 millisecond = 10000 ticks in .NET Stopwatch
                 long targetTicks = (long)(intervalMilliseconds * 10000);
                 long startTicks = sw.ElapsedTicks;
 
@@ -130,7 +131,6 @@ namespace ClickerCheater
                 {
                     updateCounter = 0;
                     int currentCount = localClickCount;
-                    localClickCount = 0;
                     try
                     {
                         Invoke(() => 
@@ -138,6 +138,7 @@ namespace ClickerCheater
                             clickCount += currentCount;
                             lblClickCount.Text = $"Total Clicks: {clickCount:N0}";
                         });
+                        localClickCount = 0;
                     }
                     catch { }
                 }
