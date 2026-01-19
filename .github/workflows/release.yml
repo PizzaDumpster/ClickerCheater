@@ -32,7 +32,7 @@ jobs:
       run: dotnet publish ClickerCheater/ClickerCheater.csproj --configuration Release --output ./publish --no-build
     
     - name: Create Release Archive
-      run: Compress-Archive -Path ./publish/* -DestinationPath ClickerCheater-Release.zip
+      run: Compress-Archive -Path ./publish -DestinationPath ClickerCheater-Release.zip
     
     - name: Upload Release Artifact
       uses: actions/upload-artifact@v4
