@@ -31,17 +31,20 @@ jobs:
     - name: Publish
       run: dotnet publish ClickerCheater/ClickerCheater.csproj --configuration Release --output ./publish --no-build
     
+    - name: Create Release Archive
+      run: Compress-Archive -Path ./publish/* -DestinationPath ClickerCheater-Release.zip
+    
     - name: Upload Release Artifact
       uses: actions/upload-artifact@v4
       with:
         name: ClickerCheater-Release
-        path: ./publish/**/*
+        path: ClickerCheater-Release.zip
     
     - name: Create Release
       if: startsWith(github.ref, 'refs/tags/')
       uses: softprops/action-gh-release@v1
       with:
-        files: ./publish/**/*
+        files: ClickerCheater-Release.zip
         draft: false
         prerelease: false
       env:
