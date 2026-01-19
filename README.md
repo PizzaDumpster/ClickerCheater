@@ -25,7 +25,7 @@ ClickerCheater is an automated mouse clicking tool that simulates rapid mouse cl
 
 ### Installation
 
-1. Download the latest release from the [Releases](../../releases) page
+1. Download the latest release from the [Releases](https://github.com/PizzaDumpster/ClickerCheater/releases) page
 2. Extract the ZIP file to your desired location
 3. Run `ClickerCheater.exe`
 
