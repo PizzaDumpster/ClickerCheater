@@ -60,13 +60,13 @@
             lblInterval.Name = "lblInterval";
             lblInterval.Size = new Size(151, 19);
             lblInterval.TabIndex = 1;
-            lblInterval.Text = "Click Interval (µs):";
+            lblInterval.Text = "Click Interval (ms):";
             // 
             // numInterval
             // 
             numInterval.DecimalPlaces = 0;
             numInterval.Location = new Point(200, 78);
-            numInterval.Maximum = new decimal(new int[] { 1000000, 0, 0, 0 });
+            numInterval.Maximum = new decimal(new int[] { 100000, 0, 0, 0 });
             numInterval.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
             numInterval.Name = "numInterval";
             numInterval.Size = new Size(150, 23);

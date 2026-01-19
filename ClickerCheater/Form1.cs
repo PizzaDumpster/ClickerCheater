@@ -72,7 +72,6 @@ namespace ClickerCheater
                 if (!isRunning)
                 {
                     isRunning = true;
-                    clickCount = 0;
                     
                     UpdateStatus("Running", Color.Green);
                     btnStart.Enabled = false;
@@ -109,15 +108,16 @@ namespace ClickerCheater
         private void ClickLoop()
         {
             Stopwatch sw = Stopwatch.StartNew();
-            double intervalMicroseconds = 0;
+            double intervalMilliseconds = 0;
             int updateCounter = 0;
             int localClickCount = 0;
 
-            Invoke(() => intervalMicroseconds = (double)numInterval.Value);
+            Invoke(() => intervalMilliseconds = (double)numInterval.Value);
 
             while (isRunning)
             {
-                long targetTicks = (long)(intervalMicroseconds * 10);
+                // 1 millisecond = 10000 ticks in .NET Stopwatch
+                long targetTicks = (long)(intervalMilliseconds * 10000);
                 long startTicks = sw.ElapsedTicks;
 
                 Point cursorPos = Cursor.Position;
@@ -135,9 +135,10 @@ namespace ClickerCheater
                     {
                         Invoke(() => 
                         {
-                            clickCount = currentCount;
+                            clickCount += currentCount;
                             lblClickCount.Text = $"Total Clicks: {clickCount:N0}";
                         });
+                        localClickCount = 0;
                     }
                     catch { }
                 }
@@ -153,7 +154,7 @@ namespace ClickerCheater
             {
                 Invoke(() => 
                 {
-                    clickCount = localClickCount;
+                    clickCount += localClickCount;
                     lblClickCount.Text = $"Total Clicks: {clickCount:N0}";
                 });
             }
